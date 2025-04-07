@@ -26,6 +26,7 @@
 
 ## Suggested Project Structure
 
+```txt
 pong_rust_bevy/
 ├── Cargo.toml
 ├── src/
@@ -38,6 +39,7 @@ pong_rust_bevy/
 │ │ ├── collision.rs
 │ │ └── scoring.rs
 │ └── config.rs
+```
 
 ---
 
