@@ -63,7 +63,7 @@ pong_rust_bevy/
 ### 📍 Milestone 1 – Setup inicial
 
 - [x] Criar projeto com `cargo new`
-- [ ] Adicionar Bevy ao `Cargo.toml`
+- [x] Adicionar Bevy ao `Cargo.toml`
 - [ ] Janela + câmera 2D funcionando
 - [ ] Sprite do paddle visível na tela
 
