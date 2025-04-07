@@ -1,30 +1,30 @@
-# 🕹️ Projeto 1 – Pong com Esteroides (Rust + Bevy)
+# Project 1 – Pong on Steroids (Rust + Bevy)
 
-> Primeiro projeto do plano de estudos com foco em aprender os fundamentos de Rust e Bevy com um jogo 2D simples, usando ECS, entrada de usuário, movimentação e lógica de jogo.
-
----
-
-## 🎯 Objetivo
-
-- Aprender Rust na prática, entendendo ownership, borrow checker, módulos e enums.
-- Dominar o básico da Bevy Engine e sua arquitetura ECS.
-- Criar um jogo funcional e modular com estrutura limpa e extensível.
+> First project of the study plan focused on learning the fundamentals of Rust and Bevy with a simple 2D game, using ECS, user input, movement, and game logic.
 
 ---
 
-## 🧠 Conceitos-Chave
+## Objective
+
+- Learn Rust in practice, understanding ownership, borrow checker, modules, and enums.
+- Master the basics of the Bevy Engine and its ECS architecture.
+- Create a functional and modular game with a clean and extensible structure.
+
+---
+
+## Key Concepts
 
 - Bevy App lifecycle
 - ECS (Entities, Components, Systems)
-- Transform e Sprite
-- Input do teclado
-- Colisões simples
-- Sistema de pontuação
-- HUD com texto
+- Transform and Sprite
+- Keyboard input
+- Simple collisions
+- Scoring system
+- HUD with text
 
 ---
 
-## 🗂️ Estrutura Sugerida do Projeto
+## Suggested Project Structure
 
 pong_rust_bevy/
 ├── Cargo.toml
@@ -41,81 +41,81 @@ pong_rust_bevy/
 
 ---
 
-## ✅ Funcionalidades Básicas
+## Basic Features
 
-| Feature                  | Status |
-| ------------------------ | ------ |
-| Janela com câmera 2D     | 🔲     |
-| Paddle do jogador        | 🔲     |
-| Bola com movimento       | 🔲     |
-| Input de movimento (W/S) | 🔲     |
-| Colisão bola/paddle      | 🔲     |
-| Colisão com paredes      | 🔲     |
-| Sistema de pontuação     | 🔲     |
-| UI com placar            | 🔲     |
-| Reinício da partida      | 🔲     |
-| Sons (rebate, ponto)     | 🔲     |
-
----
-
-## 🚧 Milestones
-
-### 📍 Milestone 1 – Setup inicial
-
-- [x] Criar projeto com `cargo new`
-- [x] Adicionar Bevy ao `Cargo.toml`
-- [ ] Janela + câmera 2D funcionando
-- [ ] Sprite do paddle visível na tela
-
-### 📍 Milestone 2 – Movimento e colisão
-
-- [ ] Sistema de input funcionando (W/S)
-- [ ] Movimento do paddle
-- [ ] Bola se movendo automaticamente
-- [ ] Colisão com paddle e bordas
-
-### 📍 Milestone 3 – Pontuação e HUD
-
-- [ ] Contar pontos (quando bola passa por paddle)
-- [ ] Exibir pontuação na tela (HUD com texto)
-- [ ] Reset da bola após ponto
-
-### 📍 Milestone 4 – Polimento (opcional)
-
-- [ ] Sons básicos usando `bevy_kira_audio`
-- [ ] Efeitos visuais (trail, mudança de cor)
-- [ ] Splash screen / menu inicial simples
+| Feature                | Status |
+| ---------------------- | ------ |
+| Window with 2D camera  | [ ]    |
+| Player paddle          | [ ]    |
+| Ball with movement     | [ ]    |
+| Movement input (W/S)   | [ ]    |
+| Ball/paddle collision  | [ ]    |
+| Wall collision         | [ ]    |
+| Scoring system         | [ ]    |
+| UI with scoreboard     | [ ]    |
+| Match restart          | [ ]    |
+| Sounds (bounce, point) | [ ]    |
 
 ---
 
-## 📚 Recursos Úteis
+## Milestones
 
-- 📘 [The Rust Book](https://doc.rust-lang.org/book/)
-- 🧪 [Bevy Cheatbook](https://bevy-cheatbook.github.io/)
-- 🧰 [Bevy Examples](https://github.com/bevyengine/bevy/tree/main/examples)
+### Milestone 1 – Initial Setup
+
+- [x] Create project with `cargo new`
+- [x] Add Bevy to `Cargo.toml`
+- [ ] Window + 2D camera working
+- [ ] Paddle sprite visible on screen
+
+### Milestone 2 – Movement and Collision
+
+- [ ] Input system working (W/S)
+- [ ] Paddle movement
+- [ ] Ball moving automatically
+- [ ] Collision with paddle and edges
+
+### Milestone 3 – Scoring and HUD
+
+- [ ] Track points (when ball passes paddle)
+- [ ] Display score on screen (HUD with text)
+- [ ] Reset ball after point
+
+### Milestone 4 – Polish (optional)
+
+- [ ] Basic sounds using `bevy_kira_audio`
+- [ ] Visual effects (trail, color change)
+- [ ] Splash screen / simple start menu
 
 ---
 
-## 💡 Dicas
+## Useful Resources
 
-- Comece simples: um paddle, uma bola.
-- Teste cada sistema separadamente (input, física, colisão).
-- Use `println!()` para depurar no começo.
-- Modularize os sistemas cedo — isso te ajuda a escalar o projeto depois.
-
----
-
-## 🧾 Diário de Desenvolvimento (exemplo)
-
-**Dia 1 – Setup**
-
-- [x] Criei o projeto com cargo
-- [x] Janela abre com background preto
-- [x] Paddle aparece centralizado
-- Próximo: movimento via input
+- [The Rust Book](https://doc.rust-lang.org/book/)
+- [Bevy Cheatbook](https://bevy-cheatbook.github.io/)
+- [Bevy Examples](https://github.com/bevyengine/bevy/tree/main/examples)
 
 ---
 
-## 🔗 Licença
+## Tips
+
+- Start simple: one paddle, one ball.
+- Test each system separately (input, physics, collision).
+- Use `println!()` for debugging early on.
+- Modularize systems early — it helps scale the project later.
+
+---
+
+## Development Log (example)
+
+**Day 1 – Setup**
+
+- [x] Created project with cargo
+- [x] Window opens with black background
+- [x] Paddle appears centered
+- Next: movement via input
+
+---
+
+## License
 
 MIT
