@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{core_pipeline::bloom::Bloom, prelude::*};
 
 const PLAYER_SPEED: f32 = 100.;
 
@@ -8,7 +8,7 @@ struct Player;
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_systems(Startup, setup_scene)
+        .add_systems(Startup, (setup_scene, setup_instructions, setup_camera))
         .run();
 }
 
@@ -29,5 +29,28 @@ fn setup_scene(
         Mesh2d(meshes.add(Circle::new(25.))),
         MeshMaterial2d(materials.add(Color::srgb(6.25, 9.4, 9.1))), // RGB values exceed 1 to achieve a bright color for the bloom effect
         Transform::from_xyz(0., 0., 2.),
+    ));
+}
+
+fn setup_instructions(mut commands: Commands) {
+    commands.spawn((
+        Text::new("Move the light with WASD"),
+        Node {
+            position_type: PositionType::Absolute,
+            bottom: Val::Px(12.),
+            left: Val::Px(12.),
+            ..Default::default()
+        },
+    ));
+}
+
+fn setup_camera(mut commands: Commands) {
+    commands.spawn((
+        Camera2d,
+        Camera {
+            hdr: true,
+            ..Default::default()
+        },
+        Bloom::NATURAL,
     ));
 }
