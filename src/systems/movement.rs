@@ -7,7 +7,6 @@ pub fn move_player(
     time: Res<Time>,
     game_config: ResMut<GameConfig>,
 ) {
-    // TODO: Research what is Ok
     let Ok(mut player) = player.get_single_mut() else {
         return;
     };
