@@ -1,13 +1,12 @@
 pub mod movements {
-    use bevy::prelude::{ButtonInput, KeyCode, Query, Res, Time, Transform, Vec2, With};
-    use crate::components::components::Player;
-
-    const PLAYER_SPEED: f32 = 300.;
+    use bevy::{ecs::system::ResMut, prelude::{ButtonInput, KeyCode, Query, Res, Time, Transform, Vec2, With}};
+    use crate::{components::components::Player, config::config::GameConfig};
 
     pub fn move_player(
         mut player: Query<&mut Transform, With<Player>>,
         kb_input: Res<ButtonInput<KeyCode>>,
         time: Res<Time>,
+        game_config: ResMut<GameConfig>,
     ) {
         // TODO: Research what is Ok
         let Ok(mut player) = player.get_single_mut() else {
@@ -24,7 +23,7 @@ pub mod movements {
             direction.y += 1.;
         } 
 
-        let move_delta = direction.normalize_or_zero() * PLAYER_SPEED * time.delta_secs();
+        let move_delta = direction.normalize_or_zero() * game_config.player_speed * time.delta_secs();
         player.translation += move_delta.extend(0.);
     }
 }

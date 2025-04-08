@@ -6,9 +6,10 @@ mod systems;
 use systems::movements::move_player;
 
 mod game;
-use game::game::{setup_scene, setup_instructions, setup_camera};
+use game::game::*;
 
-const WINDOW_SIZE: Vec2 = Vec2::new(1000., 700.);
+mod config;
+use config::config::WINDOW_SIZE;
 
 fn main() {
     App::new()
@@ -19,7 +20,7 @@ fn main() {
             }),
             ..Default::default()
         }))
-        .add_systems(Startup, (setup_scene, setup_instructions, setup_camera))
+        .add_systems(Startup, (setup_game, setup_scene, setup_instructions, setup_camera).chain())
         .add_systems(Update, move_player)
         .run();
 }
