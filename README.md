@@ -47,10 +47,10 @@ pong_rust_bevy/
 
 | Feature                | Status |
 | ---------------------- | ------ |
-| Window with 2D camera  | [ ]    |
-| Player paddle          | [ ]    |
+| Window with 2D camera  | [x]    |
+| Player paddle          | [x]    |
 | Ball with movement     | [ ]    |
-| Movement input (W/S)   | [ ]    |
+| Movement input (J/K)   | [x]    |
 | Ball/paddle collision  | [ ]    |
 | Wall collision         | [ ]    |
 | Scoring system         | [ ]    |
@@ -66,13 +66,13 @@ pong_rust_bevy/
 
 - [x] Create project with `cargo new`
 - [x] Add Bevy to `Cargo.toml`
-- [ ] Window + 2D camera working
-- [ ] Paddle sprite visible on screen
+- [x] Window + 2D camera working
+- [x] Paddle sprite visible on screen
 
 ### Milestone 2 – Movement and Collision
 
-- [ ] Input system working (W/S)
-- [ ] Paddle movement
+- [x] Input system working (J/K)
+- [x] Paddle movement
 - [ ] Ball moving automatically
 - [ ] Collision with paddle and edges
 
