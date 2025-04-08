@@ -3,13 +3,13 @@ use bevy::{prelude::*, window::WindowResolution};
 mod components;
 
 mod systems;
-use systems::movements::move_player;
+use systems::movement::*;
 
 mod game;
-use game::game::*;
+use game::*;
 
 mod config;
-use config::config::WINDOW_SIZE;
+use config::WINDOW_SIZE;
 
 fn main() {
     App::new()

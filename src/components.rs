@@ -1,11 +1,7 @@
-pub mod components {
-    use bevy::ecs::component::Component;
+use bevy::ecs::component::Component;
 
-    #[derive(Component)]
-    pub struct Player;
+#[derive(Component)]
+pub struct Player;
 
-    #[derive(Component)]
-    pub struct Enemy;
-}
-
-
+#[derive(Component)]
+pub struct Enemy;
