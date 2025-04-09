@@ -1,5 +1,9 @@
+use crate::{
+    components::CollisionEvent,
+    config::WINDOW_SIZE,
+    systems::{movement::*, world::*},
+};
 use bevy::{prelude::*, window::WindowResolution};
-use crate::{config::WINDOW_SIZE, systems::world::*, systems::movement::*};
 
 pub fn init() {
     App::new()
@@ -10,7 +14,11 @@ pub fn init() {
             }),
             ..Default::default()
         }))
-        .add_systems(Startup, (setup_game, setup_scene, setup_instructions, setup_camera).chain())
-        .add_systems(Update, (move_player, move_ball))
+        .add_event::<CollisionEvent>()
+        .add_systems(
+            Startup,
+            (setup_game, setup_scene, setup_instructions, setup_camera).chain(),
+        )
+        .add_systems(Update, (move_player, move_ball, check_collisions))
         .run();
 }
