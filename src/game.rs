@@ -1,7 +1,7 @@
 use crate::{
     components::CollisionEvent,
     config::WINDOW_SIZE,
-    systems::{movement::*, world::*},
+    systems::{collision::*, movement::*, world::*},
 };
 use bevy::{prelude::*, window::WindowResolution};
 
