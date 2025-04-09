@@ -49,7 +49,7 @@ pong_rust_bevy/
 | ---------------------- | ------ |
 | Window with 2D camera  | [x]    |
 | Player paddle          | [x]    |
-| Ball with movement     | [ ]    |
+| Ball with movement     | [x]    |
 | Movement input (J/K)   | [x]    |
 | Ball/paddle collision  | [ ]    |
 | Wall collision         | [ ]    |
@@ -73,7 +73,7 @@ pong_rust_bevy/
 
 - [x] Input system working (J/K)
 - [x] Paddle movement
-- [ ] Ball moving automatically
+- [x] Ball moving automatically
 - [ ] Collision with paddle and edges
 
 ### Milestone 3 – Scoring and HUD
