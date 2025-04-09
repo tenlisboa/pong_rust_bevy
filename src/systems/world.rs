@@ -1,6 +1,6 @@
 use bevy::{core_pipeline::bloom::Bloom, prelude::*};
 
-use crate::components::{Ball, Enemy, Player};
+use crate::components::{Ball, Enemy, Player, Velocity};
 use crate::config::GameConfig;
 
 pub fn setup_game(mut commands: Commands) {
@@ -44,15 +44,11 @@ pub fn setup_scene(
 
     // Ball
     commands.spawn((
-        Ball {
-            x: -1.,
-            y: 0.,
-            x_speed: 100.,
-            y_speed: 25.,
-        },
+        Ball,
         Mesh2d(meshes.add(Circle::new(20.))),
         MeshMaterial2d(materials.add(Color::srgb(1.25, 1.25, 1.25))),
         Transform::from_xyz(0., 0., 2.),
+        Velocity(Vec2::new(-1., 0.).normalize() * game_config.ball_speed),
     ));
 }
 

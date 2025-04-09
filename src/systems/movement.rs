@@ -1,9 +1,13 @@
 use crate::{
-    components::{Ball, Player},
+    components::{Ball, Collider, CollisionEvent, Player, Velocity},
     config::GameConfig,
 };
 use bevy::{
-    ecs::system::ResMut,
+    ecs::{
+        entity::Entity,
+        event::EventWriter,
+        system::{Commands, ResMut, Single},
+    },
     prelude::{ButtonInput, KeyCode, Query, Res, Time, Transform, Vec2, With},
 };
 
@@ -31,24 +35,20 @@ pub fn move_player(
     player.translation += move_delta.extend(0.);
 }
 
-pub fn move_ball(
-    mut ball_transformer: Query<&mut Transform, With<Ball>>,
-    ball: Query<&Ball>,
-    time: Res<Time>,
-    game_config: ResMut<GameConfig>,
+pub fn move_ball(ball: Single<(&mut Transform, &Velocity), With<Ball>>, time: Res<Time>) {
+    let (mut ball_transform, ball_velocity) = ball.into_inner();
+
+    ball_transform.translation.x += ball_velocity.0.x * time.delta_secs();
+    ball_transform.translation.y += ball_velocity.0.y * time.delta_secs();
+}
+
+pub fn check_collisions(
+    mut commands: Commands,
+    ball: Single<(&mut Velocity, &Transform), With<Ball>>,
+    colliders: Query<(Entity, &Transform), With<Collider>>,
+    mut collision_events: EventWriter<CollisionEvent>,
 ) {
-    let Ok(mut ball_transformer) = ball_transformer.get_single_mut() else {
-        return;
-    };
-
-    let Ok(ball) = ball.get_single() else {
-        return;
-    };
-
-    let direction = Vec2::new(ball.x, ball.y);
-
-    let speed = Vec2::new(ball.x_speed, ball.y_speed);
-
-    let move_delta = direction.normalize_or_zero() * speed * time.delta_secs();
-    ball_transformer.translation += move_delta.extend(0.);
+    for (collider_entity, collider_transform) in &colliders {
+        // TODO: https://bevyengine.org/examples/games/breakout/
+    }
 }

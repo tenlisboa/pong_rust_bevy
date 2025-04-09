@@ -1,4 +1,7 @@
-use bevy::ecs::component::Component;
+use bevy::{
+    ecs::{component::Component, event::Event},
+    math::Vec2,
+};
 
 #[derive(Component)]
 pub struct Player;
@@ -7,10 +10,13 @@ pub struct Player;
 pub struct Enemy;
 
 #[derive(Component)]
-pub struct Ball {
-    pub x_speed: f32,
-    pub y_speed: f32,
+pub struct Ball;
 
-    pub x: f32,
-    pub y: f32,
-}
+#[derive(Component)]
+pub struct Velocity(pub Vec2);
+
+#[derive(Component)]
+pub struct Collider;
+
+#[derive(Event, Default)]
+pub struct CollisionEvent;
