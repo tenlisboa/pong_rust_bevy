@@ -8,7 +8,10 @@ use bevy::{
     transform::components::Transform,
 };
 
-use crate::components::{Ball, Collider, Collision, CollisionEvent, Velocity};
+use crate::{
+    components::{Ball, Collider, Collision, CollisionEvent, Velocity},
+    config::BALL_DIAMETER,
+};
 
 pub fn check_collisions(
     // mut commands: Commands,
@@ -20,7 +23,7 @@ pub fn check_collisions(
 
     for collider_transform in &colliders {
         let collision = ball_collision(
-            BoundingCircle::new(ball_transform.translation.truncate(), 30. / 2.),
+            BoundingCircle::new(ball_transform.translation.truncate(), BALL_DIAMETER / 2.),
             Aabb2d::new(
                 collider_transform.translation.truncate(),
                 collider_transform.scale.truncate() / 2.,
