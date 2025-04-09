@@ -19,6 +19,14 @@ pub fn init() {
             Startup,
             (setup_game, setup_scene, setup_instructions, setup_camera).chain(),
         )
-        .add_systems(Update, (move_player, move_ball, check_collisions))
+        .add_systems(
+            Update,
+            (
+                move_player,
+                move_ball,
+                check_collisions,
+                check_wall_collision,
+            ),
+        )
         .run();
 }

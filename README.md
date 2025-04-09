@@ -51,8 +51,8 @@ pong_rust_bevy/
 | Player paddle          | [x]    |
 | Ball with movement     | [x]    |
 | Movement input (J/K)   | [x]    |
-| Ball/paddle collision  | [ ]    |
-| Wall collision         | [ ]    |
+| Ball/paddle collision  | [x]    |
+| Wall collision         | [x]    |
 | Scoring system         | [ ]    |
 | UI with scoreboard     | [ ]    |
 | Match restart          | [ ]    |
@@ -74,7 +74,7 @@ pong_rust_bevy/
 - [x] Input system working (J/K)
 - [x] Paddle movement
 - [x] Ball moving automatically
-- [ ] Collision with paddle and edges
+- [x] Collision with paddle and edges
 
 ### Milestone 3 – Scoring and HUD
 
@@ -104,17 +104,6 @@ pong_rust_bevy/
 - Test each system separately (input, physics, collision).
 - Use `println!()` for debugging early on.
 - Modularize systems early — it helps scale the project later.
-
----
-
-## Development Log (example)
-
-**Day 1 – Setup**
-
-- [x] Created project with cargo
-- [x] Window opens with black background
-- [x] Paddle appears centered
-- Next: movement via input
 
 ---
 
