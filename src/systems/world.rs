@@ -1,17 +1,14 @@
-use bevy::window::PrimaryWindow;
 use bevy::{core_pipeline::bloom::Bloom, prelude::*};
 
-use crate::components::{Enemy, Player};
+use crate::components::{Ball, Enemy, Player};
 use crate::config::GameConfig;
 
-pub fn setup_game(
-    mut commands: Commands,
-) {
-   commands.insert_resource(GameConfig {
-       window_size: Vec2::new(1000., 700.), 
-       player_speed: 300.,
-       enemy_speed: 300.,
-   }); 
+pub fn setup_game(mut commands: Commands) {
+    commands.insert_resource(GameConfig {
+        window_size: Vec2::new(1000., 700.),
+        player_speed: 300.,
+        ball_speed: 100.,
+    });
 }
 
 pub fn setup_scene(
@@ -22,7 +19,10 @@ pub fn setup_scene(
 ) {
     // World
     commands.spawn((
-        Mesh2d(meshes.add(Rectangle::new(game_config.window_size.x, game_config.window_size.y))),
+        Mesh2d(meshes.add(Rectangle::new(
+            game_config.window_size.x,
+            game_config.window_size.y,
+        ))),
         MeshMaterial2d(materials.add(Color::srgb(0.2, 0.2, 0.3))),
     ));
 
@@ -30,7 +30,7 @@ pub fn setup_scene(
     commands.spawn((
         Player,
         Mesh2d(meshes.add(Rectangle::new(20., 100.))),
-        MeshMaterial2d(materials.add(Color::srgb(1.25, 2.4, 2.1))), // RGB values exceed 1 to achieve a bright color for the bloom effect
+        MeshMaterial2d(materials.add(Color::srgb(1.25, 2.4, 2.1))),
         Transform::from_xyz(-(game_config.window_size.x / 2.) + 20., 0., 2.),
     ));
 
@@ -38,8 +38,21 @@ pub fn setup_scene(
     commands.spawn((
         Enemy,
         Mesh2d(meshes.add(Rectangle::new(20., 100.))),
-        MeshMaterial2d(materials.add(Color::srgb(1.25, 0.4, 0.1))), // RGB values exceed 1 to achieve a bright color for the bloom effect
+        MeshMaterial2d(materials.add(Color::srgb(1.25, 0.4, 0.1))),
         Transform::from_xyz((game_config.window_size.x / 2.) - 20., 0., 2.),
+    ));
+
+    // Ball
+    commands.spawn((
+        Ball {
+            x: -1.,
+            y: 0.,
+            x_speed: 100.,
+            y_speed: 25.,
+        },
+        Mesh2d(meshes.add(Circle::new(20.))),
+        MeshMaterial2d(materials.add(Color::srgb(1.25, 1.25, 1.25))),
+        Transform::from_xyz(0., 0., 2.),
     ));
 }
 
@@ -65,9 +78,3 @@ pub fn setup_camera(mut commands: Commands) {
         Bloom::NATURAL,
     ));
 }
-
-pub fn setup_keybindings(mut commands: Commands, kb_input: Res<ButtonInput<KeyCode>>, q_windows: Query<&Window, With<PrimaryWindow>>) {
-    if kb_input.pressed(KeyCode::KeyQ) {
-    }    
-}
-

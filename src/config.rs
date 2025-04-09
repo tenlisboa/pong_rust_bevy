@@ -6,5 +6,5 @@ pub const WINDOW_SIZE: Vec2 = Vec2::new(1000., 700.);
 pub struct GameConfig {
     pub window_size: Vec2,
     pub player_speed: f32,
-    pub enemy_speed: f32,
+    pub ball_speed: f32,
 }

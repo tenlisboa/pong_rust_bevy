@@ -11,6 +11,6 @@ pub fn init() {
             ..Default::default()
         }))
         .add_systems(Startup, (setup_game, setup_scene, setup_instructions, setup_camera).chain())
-        .add_systems(Update, move_player)
+        .add_systems(Update, (move_player, move_ball))
         .run();
 }
