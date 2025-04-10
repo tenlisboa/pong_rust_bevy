@@ -6,8 +6,9 @@ use crate::config::{BALL_DIAMETER, GameConfig, PADDLE_SIZE};
 pub fn setup_game(mut commands: Commands) {
     commands.insert_resource(GameConfig {
         window_size: Vec2::new(1000., 700.),
+        ball_speed: 300.,
         player_speed: 300.,
-        ball_speed: 100.,
+        enemy_speed: 150.,
     });
 }
 
@@ -32,6 +33,7 @@ pub fn setup_scene(
         Mesh2d(meshes.add(Rectangle::new(PADDLE_SIZE.x, PADDLE_SIZE.y))),
         MeshMaterial2d(materials.add(Color::srgb(1.25, 2.4, 2.1))),
         Transform::from_xyz(-(game_config.window_size.x / 2.) + 20., 0., 2.),
+        Velocity(Vec2::new(0., 1.).normalize() * game_config.player_speed),
         Collider,
     ));
 
@@ -41,6 +43,7 @@ pub fn setup_scene(
         Mesh2d(meshes.add(Rectangle::new(PADDLE_SIZE.x, PADDLE_SIZE.y))),
         MeshMaterial2d(materials.add(Color::srgb(1.25, 0.4, 0.1))),
         Transform::from_xyz((game_config.window_size.x / 2.) - 20., 0., 2.),
+        Velocity(Vec2::new(0., 1.).normalize() * game_config.enemy_speed),
         Collider,
     ));
 
@@ -50,7 +53,7 @@ pub fn setup_scene(
         Mesh2d(meshes.add(Circle::default())),
         MeshMaterial2d(materials.add(Color::srgb(1.25, 1.25, 1.25))),
         Transform::from_xyz(0., 0., 2.).with_scale(Vec2::splat(BALL_DIAMETER).extend(1.)),
-        Velocity(Vec2::new(-1., 0.).normalize() * game_config.ball_speed),
+        Velocity(Vec2::new(-1., -1.).normalize() * game_config.ball_speed),
     ));
 }
 

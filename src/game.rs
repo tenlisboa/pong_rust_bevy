@@ -24,6 +24,7 @@ pub fn init() {
             (
                 move_player,
                 move_ball,
+                move_enemy,
                 check_collisions,
                 check_wall_collision,
             ),

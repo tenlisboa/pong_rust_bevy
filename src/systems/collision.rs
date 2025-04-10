@@ -5,14 +5,12 @@ use bevy::{
         system::{Query, Single},
     },
     math::bounding::{Aabb2d, BoundingCircle, BoundingVolume, IntersectsVolume},
-    prelude::Res,
-    render::mesh::Mesh2d,
     transform::components::Transform,
 };
 
 use crate::{
     components::{Ball, Collider, Collision, CollisionEvent, Velocity},
-    config::{BALL_DIAMETER, GameConfig, WINDOW_SIZE},
+    config::{BALL_DIAMETER, WINDOW_SIZE},
 };
 
 pub fn check_collisions(
