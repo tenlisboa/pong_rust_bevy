@@ -1,5 +1,5 @@
 use bevy::{
-    ecs::{component::Component, event::Event},
+    ecs::{component::Component, event::Event, system::Resource},
     math::Vec2,
 };
 
@@ -17,6 +17,9 @@ pub struct Velocity(pub Vec2);
 
 #[derive(Component)]
 pub struct Collider;
+
+#[derive(Resource)]
+pub struct Score(pub i32);
 
 #[derive(Event, Default)]
 pub struct CollisionEvent;

@@ -1,7 +1,7 @@
 use crate::{
-    components::CollisionEvent,
+    components::{CollisionEvent, Score},
     config::WINDOW_SIZE,
-    systems::{collision::*, movement::*, world::*},
+    systems::{collision::*, movement::*, scoring::setup_score, world::*},
 };
 use bevy::{prelude::*, window::WindowResolution};
 
@@ -15,9 +15,17 @@ pub fn init() {
             ..Default::default()
         }))
         .add_event::<CollisionEvent>()
+        .insert_resource(Score(0))
         .add_systems(
             Startup,
-            (setup_game, setup_scene, setup_instructions, setup_camera).chain(),
+            (
+                setup_game,
+                setup_scene,
+                setup_instructions,
+                setup_camera,
+                setup_score,
+            )
+                .chain(),
         )
         .add_systems(
             Update,
