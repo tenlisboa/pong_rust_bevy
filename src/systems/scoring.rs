@@ -1,4 +1,6 @@
 use bevy::{
+    asset::AssetServer,
+    audio::AudioPlayer,
     ecs::{
         entity::Entity,
         event::EventWriter,
@@ -6,6 +8,7 @@ use bevy::{
         system::{Commands, Res, ResMut, Single},
     },
     hierarchy::BuildChildren,
+    image::Image,
     text::TextSpan,
     transform::components::Transform,
     ui::{
@@ -18,6 +21,10 @@ use crate::{
     components::{Ball, CollisionEvent, Score, ScoreBoard, Velocity},
     config::{BALL_DIAMETER, WINDOW_SIZE},
 };
+
+fn play_score(mut commands: Commands, asset_server: Res<AssetServer>) {
+    commands.spawn(AudioPlayer::new(asset_server.load("sounds/hit.ogg")));
+}
 
 pub fn setup_score(mut commands: Commands) {
     commands
@@ -42,7 +49,12 @@ pub fn update_scoreboard(
     *writer.text(*scoreboard, 1) = score.0.to_string();
 }
 
-pub fn check_for_score(mut score: ResMut<Score>, ball: Single<&Transform, With<Ball>>) {
+pub fn check_for_score(
+    commands: Commands,
+    asset_server: Res<AssetServer>,
+    mut score: ResMut<Score>,
+    ball: Single<&Transform, With<Ball>>,
+) {
     let ball_transform = ball.into_inner();
     let right = WINDOW_SIZE.x / 2.;
     let x = ball_transform.translation.x;
@@ -53,5 +65,6 @@ pub fn check_for_score(mut score: ResMut<Score>, ball: Single<&Transform, With<B
 
     if has_hit_righ_wall {
         (**score) += 1;
+        play_score(commands, asset_server);
     }
 }

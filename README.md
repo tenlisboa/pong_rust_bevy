@@ -78,13 +78,12 @@ pong_rust_bevy/
 
 ### Milestone 3 – Scoring and HUD
 
-- [ ] Track points (when ball passes paddle)
-- [ ] Display score on screen (HUD with text)
-- [ ] Reset ball after point
+- [x] Track points (when ball passes paddle)
+- [x] Display score on screen (HUD with text)
 
 ### Milestone 4 – Polish (optional)
 
-- [ ] Basic sounds using `bevy_kira_audio`
+- [x] Basic sounds using
 - [ ] Visual effects (trail, color change)
 - [ ] Splash screen / simple start menu
 
