@@ -48,14 +48,6 @@ pub fn move_enemy(
         direction.y -= 1.;
     }
 
-    println!(
-        "Direction: {} \nBall Pos: {} \nEnemy Pos: {} \nIs Ball Higher: {}",
-        direction,
-        ball_transform.translation,
-        enemy_transform.translation,
-        ball_transform.translation.y > enemy_transform.translation.y
-    );
-
     let move_delta = direction.normalize_or_zero() * enemy_velocity.0 * time.delta_secs();
     enemy_transform.translation += move_delta.extend(0.);
 }

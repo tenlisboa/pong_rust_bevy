@@ -1,7 +1,7 @@
 use crate::{
     components::{CollisionEvent, Score},
     config::WINDOW_SIZE,
-    systems::{collision::*, movement::*, scoring::setup_score, world::*},
+    systems::{collision::*, movement::*, scoring::*, world::*},
 };
 use bevy::{prelude::*, window::WindowResolution};
 
@@ -35,6 +35,8 @@ pub fn init() {
                 move_enemy,
                 check_collisions,
                 check_wall_collision,
+                check_for_score,
+                update_scoreboard,
             ),
         )
         .run();

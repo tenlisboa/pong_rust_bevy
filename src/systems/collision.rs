@@ -53,7 +53,10 @@ pub fn check_collisions(
     }
 }
 
-pub fn check_wall_collision(ball: Single<(&mut Velocity, &Transform), With<Ball>>) {
+pub fn check_wall_collision(
+    ball: Single<(&mut Velocity, &Transform), With<Ball>>,
+    mut collision_events: EventWriter<CollisionEvent>,
+) {
     let (mut ball_velocity, ball_transform) = ball.into_inner();
     let (half_x, half_y) = (WINDOW_SIZE.x / 2., WINDOW_SIZE.y / 2.);
     let (left, right, top, bottom) = (-half_x, half_x, half_y, -half_y);
@@ -67,9 +70,11 @@ pub fn check_wall_collision(ball: Single<(&mut Velocity, &Transform), With<Ball>
     let has_hit_bottom_wall = y - ball_radius < bottom;
 
     if has_hit_righ_wall || has_hit_left_wall {
+        collision_events.send_default();
         ball_velocity.0.x = -ball_velocity.0.x;
     }
     if has_hit_top_wall || has_hit_bottom_wall {
+        collision_events.send_default();
         ball_velocity.0.y = -ball_velocity.0.y;
     }
 }
