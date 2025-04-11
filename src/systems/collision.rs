@@ -4,13 +4,14 @@ use bevy::{
         query::With,
         system::{Query, Single},
     },
-    math::bounding::{Aabb2d, BoundingCircle, BoundingVolume, IntersectsVolume},
+    math::{Vec2, bounding::Aabb2d},
     transform::components::Transform,
 };
 
 use crate::{
     components::{Ball, Collider, Collision, CollisionEvent, Velocity},
     config::{BALL_DIAMETER, WINDOW_SIZE},
+    utils::collision,
 };
 
 pub fn check_collisions(
@@ -22,12 +23,11 @@ pub fn check_collisions(
     let (mut ball_velocity, ball_transform) = ball.into_inner();
 
     for collider_transform in &colliders {
-        println!(
-            "Translation: {:?}, Scale: {:?}",
-            collider_transform.translation, collider_transform.scale
-        );
-        let collision = ball_collision(
-            BoundingCircle::new(ball_transform.translation.truncate(), BALL_DIAMETER / 2.),
+        let collision = collision::check(
+            Aabb2d::new(
+                ball_transform.translation.truncate(),
+                Vec2::new(BALL_DIAMETER / 2., BALL_DIAMETER / 2.),
+            ),
             Aabb2d::new(
                 collider_transform.translation.truncate(),
                 collider_transform.scale.truncate() / 2.,
@@ -81,29 +81,4 @@ pub fn check_wall_collision(
         collision_events.send_default();
         ball_velocity.0.y = -ball_velocity.0.y;
     }
-}
-
-fn ball_collision(ball: BoundingCircle, bounding_box: Aabb2d) -> Option<Collision> {
-    if !ball.intersects(&bounding_box) {
-        println!("Not intersects: {:?}, {:?}", ball, bounding_box);
-        return None;
-    }
-
-    let closest = bounding_box.closest_point(ball.center());
-    let offset = ball.center() - closest;
-    println!("closest: {:?} and offset: {:?}", closest, offset);
-    let side = if offset.x.abs() > offset.y.abs() {
-        if offset.x < 0. {
-            Collision::Left
-        } else {
-            Collision::Right
-        }
-    } else if offset.y > 0. {
-        Collision::Top
-    } else {
-        Collision::Bottom
-    };
-    println!("Side: {:?}", side);
-
-    Some(side)
 }
