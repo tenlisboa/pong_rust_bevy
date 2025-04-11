@@ -22,6 +22,10 @@ pub fn check_collisions(
     let (mut ball_velocity, ball_transform) = ball.into_inner();
 
     for collider_transform in &colliders {
+        println!(
+            "Translation: {:?}, Scale: {:?}",
+            collider_transform.translation, collider_transform.scale
+        );
         let collision = ball_collision(
             BoundingCircle::new(ball_transform.translation.truncate(), BALL_DIAMETER / 2.),
             Aabb2d::new(
@@ -81,11 +85,13 @@ pub fn check_wall_collision(
 
 fn ball_collision(ball: BoundingCircle, bounding_box: Aabb2d) -> Option<Collision> {
     if !ball.intersects(&bounding_box) {
+        println!("Not intersects: {:?}, {:?}", ball, bounding_box);
         return None;
     }
 
     let closest = bounding_box.closest_point(ball.center());
     let offset = ball.center() - closest;
+    println!("closest: {:?} and offset: {:?}", closest, offset);
     let side = if offset.x.abs() > offset.y.abs() {
         if offset.x < 0. {
             Collision::Left
@@ -97,6 +103,7 @@ fn ball_collision(ball: BoundingCircle, bounding_box: Aabb2d) -> Option<Collisio
     } else {
         Collision::Bottom
     };
+    println!("Side: {:?}", side);
 
     Some(side)
 }

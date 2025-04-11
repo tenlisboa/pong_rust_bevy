@@ -28,22 +28,23 @@ pub fn setup_scene(
         MeshMaterial2d(materials.add(Color::srgb(0.2, 0.2, 0.3))),
     ));
 
-    // Player
+    // Player: Mesh approach
     commands.spawn((
         Player,
-        Mesh2d(meshes.add(Rectangle::new(PADDLE_SIZE.x, PADDLE_SIZE.y))),
+        Mesh2d(meshes.add(Rectangle::new(1., 1.))),
         MeshMaterial2d(materials.add(Color::srgb(1.25, 2.4, 2.1))),
-        Transform::from_xyz(-(game_config.window_size.x / 2.) + 20., 0., 2.),
+        Transform::from_xyz(-(game_config.window_size.x / 2.) + 20., 0., 2.)
+            .with_scale(PADDLE_SIZE.extend(1.)),
         Velocity(Vec2::new(0., 1.).normalize() * game_config.player_speed),
         Collider,
     ));
 
-    // Enemy
+    // Enemy; Sprite approach
     commands.spawn((
         Enemy,
-        Mesh2d(meshes.add(Rectangle::new(PADDLE_SIZE.x, PADDLE_SIZE.y))),
-        MeshMaterial2d(materials.add(Color::srgb(1.25, 0.4, 0.1))),
-        Transform::from_xyz((game_config.window_size.x / 2.) - 20., 0., 2.),
+        Sprite::from_color(Color::srgb(1.25, 0.4, 0.1), Vec2::ONE),
+        Transform::from_xyz((game_config.window_size.x / 2.) - 20., 0., 2.)
+            .with_scale(PADDLE_SIZE.extend(1.)),
         Velocity(Vec2::new(0., 1.).normalize() * game_config.enemy_speed),
         Collider,
     ));
