@@ -1,4 +1,5 @@
 use bevy::{core_pipeline::bloom::Bloom, prelude::*};
+use rand::Rng;
 
 use crate::components::{Ball, Collider, Enemy, Player, Velocity};
 use crate::config::{BALL_DIAMETER, GameConfig, PADDLE_SIZE};
@@ -48,12 +49,13 @@ pub fn setup_scene(
     ));
 
     // Ball
+    let random_direction = Vec2::new(rand::rng().random::<f32>(), rand::rng().random::<f32>());
     commands.spawn((
         Ball,
         Mesh2d(meshes.add(Circle::default())),
         MeshMaterial2d(materials.add(Color::srgb(1.25, 1.25, 1.25))),
         Transform::from_xyz(0., 0., 2.).with_scale(Vec2::splat(BALL_DIAMETER).extend(1.)),
-        Velocity(Vec2::new(-1., -1.).normalize() * game_config.ball_speed),
+        Velocity(random_direction.normalize() * game_config.ball_speed),
     ));
 }
 
