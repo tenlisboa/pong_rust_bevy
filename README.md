@@ -2,6 +2,14 @@
 
 > First project of the study plan focused on learning the fundamentals of Rust and Bevy with a simple 2D game, using ECS, user input, movement, and game logic.
 
+## Menu Screen
+
+![Picture of the menu screen](docs/menu.png)
+
+## On Game Screen
+
+![Picture of the game running](docs/on_game.png)
+
 ---
 
 ## Objective
