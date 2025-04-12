@@ -84,8 +84,7 @@ pong_rust_bevy/
 ### Milestone 4 – Polish (optional)
 
 - [x] Basic sounds using
-- [ ] Visual effects (trail, color change)
-- [ ] Splash screen / simple start menu
+- [x] Splash screen / simple start menu
 
 ---
 
