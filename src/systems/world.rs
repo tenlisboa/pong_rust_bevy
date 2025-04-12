@@ -1,4 +1,4 @@
-use bevy::{core_pipeline::bloom::Bloom, prelude::*};
+use bevy::prelude::*;
 use rand::Rng;
 
 use crate::components::{Ball, Collider, Enemy, Player, Velocity};
@@ -69,16 +69,5 @@ pub fn setup_instructions(mut commands: Commands) {
             left: Val::Px(12.),
             ..Default::default()
         },
-    ));
-}
-
-pub fn setup_camera(mut commands: Commands) {
-    commands.spawn((
-        Camera2d,
-        Camera {
-            hdr: true,
-            ..Default::default()
-        },
-        Bloom::NATURAL,
     ));
 }

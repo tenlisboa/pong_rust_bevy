@@ -3,12 +3,10 @@ use bevy::{
     audio::AudioPlayer,
     ecs::{
         entity::Entity,
-        event::EventWriter,
         query::With,
         system::{Commands, Res, ResMut, Single},
     },
     hierarchy::BuildChildren,
-    image::Image,
     text::TextSpan,
     transform::components::Transform,
     ui::{
@@ -18,7 +16,7 @@ use bevy::{
 };
 
 use crate::{
-    components::{Ball, CollisionEvent, Score, ScoreBoard, Velocity},
+    components::{Ball, Score, ScoreBoard},
     config::{BALL_DIAMETER, WINDOW_SIZE},
 };
 
